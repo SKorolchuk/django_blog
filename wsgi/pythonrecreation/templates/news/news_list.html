@@ -1,0 +1,36 @@
+{% extends "base_pages/news_base.html" %}
+
+{% block title %} Python from Net Pit - News {% endblock %}
+
+{% block content %}
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">Categories</a>
+            <ul class="nav">
+                {% for item in categories %}
+                    <li>
+                        <a href="{% url news.list.category item.pk %}">{{ item.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div id="news-list">
+        {% for itm in news_list %}
+            <div class="media">
+                <a class="pull-left" href="{% url news.info itm.pk %}">
+                    <img class="media-object" src="{{ itm.image.image.url }}">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading label label-inverse">
+                        {{itm.title }} <span class="label label-info">created <span class="label label-warning">{{ itm.created }}</span> by {{ itm.creator }} | <span class="label label-success">{{ itm.category.title }}</span></span>
+                    </h4>
+                    <div class="media media-content">
+                        <div>{{ itm.short_info }}</div>
+                        <a class="btn btn-info" href="{% url news.info itm.pk %}">View >></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

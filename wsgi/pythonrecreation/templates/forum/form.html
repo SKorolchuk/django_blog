@@ -1,0 +1,15 @@
+{% extends "base_pages/forum_base.html" %}
+
+{% block content %}
+    <form action="{{ action }}" method="POST">
+        <fieldset>
+            <legend>{{ title }}</legend>
+            {% csrf_token %}
+            <label>Subject:</label>
+            <input type="text" name="subject" size="60" value="{{ subject }}" placeholder="Type title of the post..."/>
+            <br />
+            <textarea name="body" id="body" style="width: 300px; height: 100px;"></textarea><br />
+            <input type="submit" value="Submit" id="submit" class="btn" />
+        </fieldset>
+    </form>
+{% endblock %}

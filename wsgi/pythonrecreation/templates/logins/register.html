@@ -1,0 +1,20 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %} Python from Net Pit - Register {% endblock %}
+
+{% block content %}
+	<form action="{% url register %}" method="post">
+        {% csrf_token %}
+        <legend> {{ state }}</legend>
+		{% if next %}
+		<input type="hidden" name="next" value="{{ next }}" />
+		{% endif %}
+		<span>username:</span>
+		<input type="text" name="username" value="{{ username }}" /><br />
+        <span>email:</span>
+		<input type="text" name="email" value="{{ username }}" /><br />
+		<span>password:</span>
+		<input type="password" name="password" value="" /><br />
+		<input type="submit" value="Register" />
+	</form>
+{% endblock %}

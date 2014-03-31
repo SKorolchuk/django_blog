@@ -1,0 +1,22 @@
+{% extends "base_pages/news_base.html" %}
+
+{% block title %} Python from Net Pit - News Info {% endblock %}
+
+{% block content %}
+    <div id="news-list" class="news-info">
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object" src="{{ news_info.image.image.url }}">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading label label-inverse">
+                    {{news_info.title }} <span class="label label-info">created <span class="label label-warning">{{ news_info.created }}</span> by {{ news_info.creator }} | <span class="label label-success">{{ news_info.category.title }}</span></span>
+                </h4>
+                <div class="media media-content">
+                    <div>{{ news_info.body }}</div>
+                    <a class="btn btn-info" href="{% url news.list %}">Back to News List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

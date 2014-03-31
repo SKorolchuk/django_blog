@@ -1,0 +1,47 @@
+{% extends "base_pages/forum_base.html" %}
+{% block content %}
+     <table class="table table-striped table-hover">
+        <thead>
+            <th>#</th>
+            <th style=" width: 74%;">Topics</th>
+            <th>Replies</th>
+            <th>Last post</th>
+            <th></th>
+        </thead>
+        <!-- Threads  -->
+        <tbody>
+            {% for thread in threads.object_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <div class="title">
+                        <a href="{% url forum.views.thread thread.pk %}">
+                            {{ thread.title }}
+                        </a>
+                    </div>
+                </td>
+                <td>{{ thread.num_replies }}</td>
+                <td>
+                    {{ thread.last_post.short|linebreaksbr }}</td>
+                <td>
+                    <a class="btn btn-inverse" href="{% url forum.views.thread thread.pk %}">View Section</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+     <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a id="new_topic" class="btn btn-inverse" href="{% url forum.views.post 'new_thread' pk %}">
+                Start New Topic
+                </a>
+            </td>
+        </tr>
+     </tfoot>
+    </table>
+
+{% endblock %}

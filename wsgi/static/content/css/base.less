@@ -1,0 +1,83 @@
+// var declarations
+
+@footer-background-color: #2B3336;
+
+@body-background-color: #92CC47;
+
+@footer-border-color: #A8D1E7;
+
+@footer-height: 90px;
+
+@main-content-background: #EEEEEE;
+
+@dropdown-menu-font-color: #EEEEEE;
+
+@dropdown-menu-background-color: #595a52;
+
+// end declarations
+
+body {
+  background: none repeat scroll 0% 0% rgb(57, 57, 57);
+  background-color: @body-background-color;
+  .dropdown-menu {
+    width: 220px;
+    color: @dropdown-menu-font-color;
+    background-color: @dropdown-menu-background-color;
+    border: 1px solid @dropdown-menu-font-color;
+    li {
+      margin: 10px;
+      a {
+        margin: 0;
+        color: @dropdown-menu-font-color;
+      }
+    }
+  }
+  .content {
+    height: 100%;
+    width: 100%;
+    margin-top: 40px;
+    padding-top: 20px;
+    margin-bottom: 145px;
+
+    .container-fluid {
+        .row-fluid {
+          .sidebar-nav {
+            box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.1);
+            border-radius: none;
+            background-color: #ffffff;
+          }
+          .main-content {
+            background-color: @main-content-background;
+            margin-left: 10px !important;
+            box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.1);
+            form {
+              margin: 15px;
+            }
+            padding-bottom: 5px;
+          }
+        }
+    }
+
+    footer {
+      padding-top: 15px;
+      box-shadow: 0px -1px 5px #0f0f0f;
+      border-top: 4px solid @footer-border-color;
+      position: fixed;
+      bottom: 0px;
+      height: @footer-height;
+      background: @footer-background-color;
+      width: 100%;
+      p {
+        font-size: 17px;
+        color: white;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      }
+      left: 0px;
+      text-align: center;
+    }
+  }
+}
+
+
+
+

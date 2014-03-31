@@ -1,0 +1,42 @@
+{% extends "base_pages/forum_base.html" %}
+
+{% block content %}
+    <table class="table table-striped table-hover">
+        <thead>
+            <th>#</th>
+            <th style=" width: 74%;">Forum section name</th>
+            <th>Posts</th>
+            <th>Last post</th>
+            <th></th>
+        </thead>
+        <!-- Forums  -->
+        <tbody>
+            {% for forum in forums %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                     <div class="media">
+                        <a class="pull-left" href="{% url forum.views.forum forum.pk %}">
+                            <img class="media-object" src="{{ forum.image.image.url }}">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading label label-inverse">
+                                {{ forum.title }}
+                            </h4>
+                            <div class="media media-content">
+                                <div>{{ forum.description }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>{{ forum.num_posts }}</td>
+                <td>
+                    {{ forum.last_post.short|linebreaksbr }}</td>
+                <td>
+                    <a class="btn btn-inverse" href="{% url forum.views.forum forum.pk %}">View Section</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base_pages/forum_base.html" %}
+
+{% block content %}
+     <form enctype="multipart/form-data" action="" method="POST">
+        <fieldset>
+            <legend>Edit Profile</legend>
+            {% csrf_token %}
+            {% if img %}
+                <p>
+                    <img border="0" alt="Profile Pic" src="{{ img }}" />
+                </p>
+            {% endif %}
+            <legend>Profile Pic:</legend>
+            {{ pf.avatar }}
+            <input type="submit" value="Submit" id="submit" class="btn" />
+        </fieldset>
+    </form>
+{% endblock %}

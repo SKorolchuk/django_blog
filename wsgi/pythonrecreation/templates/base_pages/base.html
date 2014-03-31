@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    {% load staticfiles %}
+    <script type="text/javascript" src="{% static "libs/jquery.js" %}"></script>
+    <script type="text/javascript" src="{% static "libs/underscore.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.js" %}"></script>
+    <link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "bootstrap/css/bootstrap_responsive.css" %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static "content/css/base.less" %}" rel="stylesheet/less" type="text/css"/>
+    {% block additional_includes %}
+    {% endblock %}
+    <script type="text/javascript" src="{% static "libs/less.js" %}"></script>
+    <title>
+        {% block title %}
+            Python from the Net Pit
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <div class="navbar navbar-fixed-top navbar-inverse">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">Python from Net Pit</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="{% url home %}">Home</a>
+                        </li>
+                        <li>
+                            <a href="{% url about %}">About</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Contacts
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="http://vk.com/id100429328">My Account at VK</a>
+                                </li>
+                                <li>
+                                    <a href="http://www.facebook.com/sergey.korolchuk.dev">My Account at Facebook</a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/SKorolchuk">My Works at GitHub</a>
+                                </li>
+                                <li>
+                                    <a href="http://www.linkedin.com/pub/sergei-korolchuk/57/17b/76b">My LinkedIn Profile</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{% url feed %}">News Feed</a>
+                        </li>
+                        <li>
+                            <a href="{% url live_chat %}">Chat</a>
+                        </li>
+                        <li>
+                            <a href="{% url forum.views.main %}">Forum</a>
+                        </li>
+                        <li>
+                            <a href="{% url news.list %}">News</a>
+                        </li>
+                        <li>
+                            {% if is_auth %}
+                                <a style="color: #ffffff;">Hi, {{ user.username }}</a>
+                            {% else %}
+                                <a style="color: #ffffff;">You are not logged in!</a>
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if is_auth %}
+                                <a style="color: #ffffff;" href="{% url profile %}">Go to Profile!</a>
+                            {% else %}
+                                <a href="{% url auth.control.login %}" style="color: #ffffff;">Log in</a>
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if is_auth %}
+                                <a style="color: #ffffff;" href="{% url logout %}">Log out!</a>
+                            {% else %}
+                                <a style="color: #ffffff;" href="{% url register %}">Register!</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span2 bs-docs-sidebar">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list bs-docs-sidebar affix-top">
+                            <li class="nav-header">Main Menu</li>
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="/about/">About</a>
+                            </li>
+                            <li>
+                                <a href="/rss/feed/">News Feed</a>
+                            </li>
+                            <li>
+                                <a href="/irc/chat/">Chat</a>
+                            </li>
+                            <li>
+                                <a href="/forum/">Forum</a>
+                            </li>
+                            <li>
+                                <a href="/news/">News</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="span10 main-content">
+                     {% block content %}
+                     {% endblock %}
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p> SKoRdotNET Copyright &copy; 2011-2013</p>
+            <p> Powered by Twitter Bootstrap Framework &copy; 2013</p>
+            <p> and Openshift&copy; PaaS Cloud + Red Hat&copy; Corp. 2013 </p>
+        </footer>
+    </div>
+    <script type="text/javascript">
+        {% block onpage_scripts %}
+        {% endblock %}
+    </script>
+</body>
+</html>

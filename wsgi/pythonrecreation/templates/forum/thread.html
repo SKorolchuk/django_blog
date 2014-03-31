@@ -1,0 +1,36 @@
+{% extends "base_pages/forum_base.html" %}
+
+{% block content %}
+   <div class="thread">
+        <legend>
+            {{ title }}
+            <a class="btn btn-success" href="{% url forum.views.forum forum_pk %}">Back to list of topics</a>
+        </legend>
+        <div id="list">
+            <!-- Posts  -->
+            {% for post in posts.object_list %}
+                <div class="post media">
+                    {% with post.profile_data as pdata %}
+                        <div class="pull-left">
+                            <a href="#">
+                                {% if pdata.1 %}
+                                    <img class="media-object" src="{{ media_url }}{{ pdata.1 }}" />
+                                {% else %}
+                                    <img class="media-object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABYUlEQVR4nO2UMY6DMBBFc/+jTOfOjTt3Lt37CL6Ctxo0ICgSljyt9hdPSkI0ejwGv+ac6z/zogVoFIAWoFEAWoBGAWgBGgWgBWgUgBagUQBagEYBaAEaBaAFaBSAFqBRAFqARgFoARoFoAVobgcopSwzW2a2cs6n/zGzlVJCZz4SoLW2zGz3ubW2+0+t9S3ZJ2Y+FiDnfPmE5pxrjLE9ySibc15mtsYY203WWm/NRAK4hAv5TRwDpZR2sr33ZWbbqsdrn87EAlytq38fY5zKxve89/4rM5EAvq6+mqWU7Zo/vTNZ34Lj73dmfj1ASulU1m/uSBS+WvM7M78ewE/jeJjFdY43FUXjascD8c5MJMCc+3f5eGBdycY19ycbT/5PZmIB/joKQAvQKAAtQKMAtACNAtACNApAC9AoAC1AowC0AI0C0AI0CkAL0CgALUCjALQAjQLQAjQKQAvQKAAtQPMDzp4gucW+rqcAAAAASUVORK5CYII=" />
+                                {%  endif %}
+                            </a>
+                            <div>{{ post.creator }}</div>
+                            <div>Posts: {{ pdata.0 }}</div>
+                            <div>Joined: {{ post.creator.date_joined|date:"M d Y" }}</div>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ post.title }} by {{ post.creator }} | {{ post.created }}</h4>
+                            {{ post.body|linebreaksbr }}
+                        </div>
+                    {% endwith %}
+                </div>
+            {% endfor %}
+        </div>
+        <a class="btn btn-info" href="{% url forum.views.post 'reply' pk %}">Reply</a>
+    </div>
+{% endblock %}
