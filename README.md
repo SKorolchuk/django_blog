@@ -1,3 +1,9 @@
+My personal blog (with Django and OpenShift usage)
+===================
+
+Everyone can access to working project at http://pythonrecreation-skorolchuk.rhcloud.com/
+
+===================
 Django on OpenShift
 ===================
 
